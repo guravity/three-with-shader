@@ -1,8 +1,8 @@
 import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import vertexShader from "./shaders/vertexShader"
-import fragmentShader from "./shaders/fragmentShader"
+import vertexShader from "./shaders/vertexShader" // シェーダーの読み込み
+import fragmentShader from "./shaders/fragmentShader" // 同上
 
 /**
  * Sizes
@@ -27,9 +27,17 @@ const textureLoader = new THREE.TextureLoader();
 const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
 
 // Material
-const material = new THREE.ShaderMaterial({
+// const material = new THREE.ShaderMaterial({
+//     vertexShader: vertexShader,
+//     fragmentShader: fragmentShader,
+// });
+// RawShaderMaterial
+const material = new THREE.RawShaderMaterial({
     vertexShader: vertexShader,
     fragmentShader: fragmentShader,
+    // transparent: true,
+    side: THREE.DoubleSide,
+    // wireframe: true,
 });
 
 // Mesh
